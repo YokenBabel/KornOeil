@@ -10,7 +10,7 @@ import org.jdesktop.layout.GroupLayout;
 import org.jdesktop.layout.LayoutStyle;
 
 /**
- * @author yok en
+ * @author Yoken & Timothée
  */
 public class GestionAbsences extends JFrame {
     public GestionAbsences() {

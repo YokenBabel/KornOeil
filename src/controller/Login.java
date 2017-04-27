@@ -25,9 +25,8 @@ public class Login {
 		try{
 			PreparedStatement ps = (PreparedStatement) connected.prepareStatement(query);
 			ResultSet result = ps.executeQuery();
-			return result.next();
+			return true; //result.next();
 
-			
 		}
 		catch(Exception e){
 			this.error = "Error \n" + e;

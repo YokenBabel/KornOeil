@@ -2,12 +2,12 @@ package controller;
 
 public class Config {
 	
-	String bdd = "kornoeil_db";
+	String bdd = "summe201_kornoeil";
 	//Connexion locale BDD
-	String username = "root";
-	String password = "root";
-	String port = "8889";
-	String host = "jdbc:mysql://localhost:";
+	String username = "summe201_comerci";
+	String password = "Azertyuiop 01";
+	String port = "3306";
+	String host = "jdbc:mysql://69.28.199.250:";
 	//String username = "8251991";
 	//String password = "T6egd7@@";
 	//String host = "jdbc:mysql://";

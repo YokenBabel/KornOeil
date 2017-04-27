@@ -19,7 +19,7 @@ import org.jdesktop.layout.GroupLayout;
 import org.jdesktop.layout.LayoutStyle;
 
 /**
- * @author yok en
+ * @author yoken & timothée
  */
 public class GraphLogin extends JFrame {
     public GraphLogin() {
@@ -46,7 +46,7 @@ public class GraphLogin extends JFrame {
                     WebLookAndFeel.install();
                     GraphLogin frame = new GraphLogin();
                     frame.setVisible(true);
-                    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -60,13 +60,9 @@ public class GraphLogin extends JFrame {
         Config conf = new Config();
 
         String id = identifiant.getText();
-        String pass = password.getText();
 
         //Encryptage du mot de passe
-        //CryptePass crypt = new CryptePass();
-        //String pass = crypt.encrypt(password.getText(), conf.getKey());
-
-
+        String pass = password.getText();
         Login log = new Login(id, pass);
 
         log.loginQuery();
@@ -79,13 +75,16 @@ public class GraphLogin extends JFrame {
                         Accueil frame = new Accueil();
                         frame.setVisible(true);
                         frame.setSize(1024, 768);
-                        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                        //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                         frame.setResizable(false);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Mot de passe ou identifiant incorrect");
         }
     }
 
@@ -121,7 +120,7 @@ public class GraphLogin extends JFrame {
                         Accueil frame = new Accueil();
                         frame.setVisible(true);
                         frame.setSize(1024, 768);
-                        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                        //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                         frame.setResizable(false);
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -46,7 +46,7 @@ public class GraphLogin extends JFrame {
                     WebLookAndFeel.install();
                     GraphLogin frame = new GraphLogin();
                     frame.setVisible(true);
-                    //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -55,11 +55,17 @@ public class GraphLogin extends JFrame {
     }
 
 
-    private void clickValider(ActionEvent e) {
-        //Config conf = new Config();
+    private void btnValiderActionPerformed(ActionEvent e) {
+
+        Config conf = new Config();
 
         String id = identifiant.getText();
         String pass = password.getText();
+
+        //Encryptage du mot de passe
+        //CryptePass crypt = new CryptePass();
+        //String pass = crypt.encrypt(password.getText(), conf.getKey());
+
 
         Login log = new Login(id, pass);
 
@@ -73,7 +79,7 @@ public class GraphLogin extends JFrame {
                         Accueil frame = new Accueil();
                         frame.setVisible(true);
                         frame.setSize(1024, 768);
-                        frame.getDefaultCloseOperation();
+                        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                         frame.setResizable(false);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -81,46 +87,53 @@ public class GraphLogin extends JFrame {
                 }
             });
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Mot de passe ou identifiant incorrect");
-        }
     }
 
-    private void passwordKeyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ENTER){
-            String id = identifiant.getText();
-            String pass = password.getText();
+    private void btnValiderKeyPressed(KeyEvent e) {
 
-            Login log = new Login(id, pass);
+    }
 
-            log.loginQuery();
+    private void clickValider(ActionEvent e) {
+        // TODO add your code here
+    }
 
-            if(log.loginQuery() == true){
-                dispose();
-                EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            Accueil frame = new Accueil();
-                            frame.setVisible(true);
-                            frame.setSize(1024, 768);
-                            frame.getDefaultCloseOperation();
-                            frame.setResizable(false);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+    //Raccourci clavier valider via "ENTER"
+    private void passwordKeyTyped(KeyEvent e) {
+        Config conf = new Config();
+
+        String id = identifiant.getText();
+        String pass = password.getText();
+
+        //Encryptage du mot de passe
+        //CryptePass crypt = new CryptePass();
+        //String pass = crypt.encrypt(password.getText(), conf.getKey());
+
+
+        Login log = new Login(id, pass);
+
+        log.loginQuery();
+
+        if(log.loginQuery() == true){
+            dispose();
+            EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        Accueil frame = new Accueil();
+                        frame.setVisible(true);
+                        frame.setSize(1024, 768);
+                        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                        frame.setResizable(false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                });
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Mot de passe ou identifiant incorrect");
-            }
+                }
+            });
         }
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - TimothÃ©e Montias
+        // Generated using JFormDesigner Evaluation license - Yoken Babel
         identifiant = new JTextField();
         label1 = new JLabel();
         label2 = new JLabel();
@@ -152,15 +165,22 @@ public class GraphLogin extends JFrame {
         btnValider.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnValider.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                btnValiderActionPerformed(e);
+                btnValiderActionPerformed(e);
                 clickValider(e);
+            }
+        });
+        btnValider.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                btnValiderKeyPressed(e);
             }
         });
 
         //---- password ----
         password.setFont(new Font("Tahoma", Font.PLAIN, 18));
         password.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                passwordKeyPressed(e);
+            public void keyTyped(KeyEvent e) {
+                passwordKeyTyped(e);
             }
         });
 
@@ -181,7 +201,7 @@ public class GraphLogin extends JFrame {
                             .add(btnAnnuler, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
                         .add(identifiant, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                         .add(password, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                    .addContainerGap(259, Short.MAX_VALUE))
+                    .addContainerGap(103, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -194,7 +214,7 @@ public class GraphLogin extends JFrame {
                     .add(contentPaneLayout.createParallelGroup(GroupLayout.BASELINE)
                         .add(label2)
                         .add(password, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.RELATED, 172, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.RELATED, 70, Short.MAX_VALUE)
                     .add(contentPaneLayout.createParallelGroup(GroupLayout.BASELINE)
                         .add(btnAnnuler, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
                         .add(btnValider, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
@@ -206,7 +226,7 @@ public class GraphLogin extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - TimothÃ©e Montias
+    // Generated using JFormDesigner Evaluation license - Yoken Babel
     private JTextField identifiant;
     private JLabel label1;
     private JLabel label2;
